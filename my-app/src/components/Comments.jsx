@@ -1,25 +1,37 @@
-import React from 'react'
-import { useEffect , useState } from 'react'
-import './styles.css'
-import Comment from '../components/Comment'
-
+import React from "react";
+import { useEffect, useState } from "react";
+import "./styles.css";
+import Comment from "../components/Comment";
+import PaginationComments from "../components/PaginationComments";
 
 function Comments() {
-    
-  const [comments, setComments] = useState(false)
+  const [comments, setComments] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [commentsPerPage] = useState(10);
 
-  useEffect(()=>{
-    fetch('https://jsonplaceholder.typicode.com/comments')
-    .then(res => res.json())
-    .then(data => setComments(data))
-    .catch(err => console.log(err))
-  },[])
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/comments")
+      .then((res) => res.json())
+      .then((data) => setComments(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const indexOfLastComment = currentPage * commentsPerPage;
+  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+
+  const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
-    <Comment/>
+      <Comment comments={currentComments} />
+      <PaginationComments
+        commentsPerPage={commentsPerPage}
+        totalcomments={comments.length}
+        paginate={paginate}
+      />
     </>
-  )
+  );
 }
 
-export default Comments
+export default Comments;

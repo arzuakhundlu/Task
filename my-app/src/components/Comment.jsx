@@ -7,6 +7,7 @@ function Comment({comments}) {
        <table border={2}>
         <thead>
             <tr>
+              <th>PostId</th>
                 <th>Name</th>
                 <th>Body</th>
                 <th>Email</th>
@@ -16,6 +17,7 @@ function Comment({comments}) {
                 {comments && comments.map( comment => (
 
             <tr key={comment.id}>
+                <td>{comment.postId}</td>
                 <td>{comment.name}</td>
                 <td>{comment.body}</td>
                 <td>{comment.email}</td>
