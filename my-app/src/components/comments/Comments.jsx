@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "../styles.css";
 import Comment from "./Comment";
 import Pagination from "../Pagination";
+import Modal from "../Popup/ModalComments";
 
 function Comments() {
   const [comments, setComments] = useState([]);
@@ -30,6 +31,7 @@ function Comments() {
         total={comments.length}
         paginate={paginate}
       />
+      <Modal/>
     </>
   );
 }
