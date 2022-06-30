@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./styles.css";
-import Comment from "../components/Comment";
-import PaginationComments from "../components/PaginationComments";
+import "../styles.css";
+import Comment from "./Comment";
+import PaginationComments from "./PaginationComments";
 
 function Comments() {
   const [comments, setComments] = useState([]);

@@ -1,9 +1,9 @@
 import React from 'react'
-import './styles.css'
-function Pagination({postPerPage ,totalPosts, paginate}) {
+import '../styles.css'
+function Pagination({commentPerPage ,totalComments, paginate}) {
 
     const pagesNumbers = [];
-    for(let i = 1; i<=Math.ceil(totalPosts / postPerPage); i++){
+    for(let i = 1; i<=Math.ceil(totalComments / commentPerPage); i++){
         pagesNumbers.push(i)
     }
 

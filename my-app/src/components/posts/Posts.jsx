@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./styles.css";
-import Post from "../components/Post";
-import Pagination from "../components/Pagination";
+import "../styles.css";
+import Post from "../posts/Post";
+import Pagination from "../posts/Pagination";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
