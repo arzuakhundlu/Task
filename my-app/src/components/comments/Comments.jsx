@@ -20,7 +20,7 @@ function Comments() {
   const indexOfFirstComment = indexOfLastComment - perPage;
 
   const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
-  const paginate = (pagesNumbers) => setCurrentPage(pagesNumbers);
+  const paginate = (pageNumbers) => setCurrentPage(pageNumbers);
 
   return (
     <>
