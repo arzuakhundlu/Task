@@ -2,12 +2,12 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../styles.css";
 import Comment from "./Comment";
-import PaginationComments from "./PaginationComments";
+import Pagination from "../Pagination";
 
 function Comments() {
   const [comments, setComments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [commentsPerPage] = useState(10);
+  const [perPage] = useState(10);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/comments")
@@ -16,18 +16,18 @@ function Comments() {
       .catch((err) => console.log(err));
   }, []);
 
-  const indexOfLastComment = currentPage * commentsPerPage;
-  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+  const indexOfLastComment = currentPage * perPage;
+  const indexOfFirstComment = indexOfLastComment - perPage;
 
   const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pagesNumbers) => setCurrentPage(pagesNumbers);
 
   return (
     <>
       <Comment comments={currentComments} />
-      <PaginationComments
-        commentsPerPage={commentsPerPage}
-        totalcomments={comments.length}
+      <Pagination
+        perPage={perPage}
+        total={comments.length}
         paginate={paginate}
       />
     </>

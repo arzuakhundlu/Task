@@ -2,12 +2,12 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../styles.css";
 import Post from "../posts/Post";
-import Pagination from "../posts/Pagination";
+import Pagination from "../Pagination";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [perPage] = useState(10);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -16,18 +16,18 @@ function Posts() {
       .catch((err) => console.log(err));
   }, []);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const indexOfLastPost = currentPage * perPage;
+  const indexOfFirstPost = indexOfLastPost - perPage;
 
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumbers) => setCurrentPage(pageNumbers);
 
   return (
     <>
       <Post posts={currentPosts} />
       <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={posts.length}
+        perPage={perPage}
+        total={posts.length}
         paginate={paginate}
       />
     </>

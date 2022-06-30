@@ -1,22 +1,24 @@
 import React from 'react'
-import '../styles.css'
-function Pagination({postPerPage ,totalPosts, paginate}) {
+import './styles.css'
 
-    const pagesNumbers = [];
-    for(let i = 1; i<=Math.ceil(totalPosts / postPerPage); i++){
-        pagesNumbers.push(i)
+function Pagination({perPage ,total, paginate}) {
+
+    const pageNumbers = [];
+    for(let i = 1; i<=Math.ceil(total/ perPage); i++){
+        pageNumbers.push(i)
     }
 
   return (
     <>
         <ul className='pagination'>
-            {pagesNumbers.map(number =>(
+            {pageNumbers.map(number =>(
                 <li key={number} className='page-item'>
                     <a onClick={()=> paginate(number)} href="!#" className='page-link'>
                         {number}
                     </a>
                 </li>
             ))}
+        
         </ul>
     </>
   )
